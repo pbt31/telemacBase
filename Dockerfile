@@ -6,9 +6,12 @@ ENV DEP=dependencies
 ENV TELEMAC_DIR=/home/telemac
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-## INSTALL APT DEPENDENCIES
-RUN apt-get update && apt-get install -y python3 python3-numpy gfortran libopenmpi-dev openmpi-bin \
-	curl cmake python3-scipy python3-matplotlib g++
+## INSTALL APT AND PIP DEPENDENCIES
+RUN apt-get update && apt-get install -y python2 python-numpy gfortran libopenmpi-dev openmpi-bin \
+	curl cmake g++
+RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+RUN python2 get-pip.py
+RUN python2 -m pip install --user scipy matplotlib
 
 ## SET WORKING DIR INSIDE THE CONTAINER
 WORKDIR $TELEMAC_DIR
