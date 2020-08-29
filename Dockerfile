@@ -8,7 +8,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 ## INSTALL APT DEPENDENCIES
 RUN apt-get update && apt-get install -y python3 python3-numpy gfortran libopenmpi-dev openmpi-bin \
-	curl cmake python3-scipy python3-matplotlib g++
+	curl cmake python3-scipy python3-matplotlib g++ python3-distutils python3-dev
 
 ## SET WORKING DIR INSIDE THE CONTAINER
 WORKDIR $TELEMAC_DIR
